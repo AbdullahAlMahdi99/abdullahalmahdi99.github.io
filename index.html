@@ -25,13 +25,12 @@
       font-family: 'Arial, sans-serif';
       text-align: center;
       background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
-      height: 100vh;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start; /* Start at the top */
       align-items: center;
-      padding: 10px;
+      padding: 20px;
+      overflow-y: auto; /* Enable vertical scrolling */
     }
 
     h1 {
@@ -39,6 +38,7 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
       color: #D72638; /* Charming Red */
       font-family: 'LovePinkBlack', cursive; /* Custom font for h1 */
+      margin-bottom: 20px;
     }
 
     p {
@@ -60,7 +60,7 @@
     }
 
     footer {
-      position: absolute;
+      position: relative;
       bottom: 20px;
       font-size: 1rem;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
@@ -148,7 +148,7 @@
   </p>
 
   <!-- Play Music Button -->
-  <button class="play-button" onclick="playMusic()">🎶 Click Me 🎶</button>
+  <button class="play-button" onclick="playMusic()">🎶 Play Music 🎶</button>
 
   <footer>
     With all my heart, Abdullah
@@ -168,7 +168,7 @@
     }
 
     // Play Music Script
-    let audio = new Audio('brithdaysong.mp3'); // Replace with your audio file
+    let audio = new Audio('your-audio-file.mp3'); // Replace with your audio file
     function playMusic() {
       audio.play();
       audio.loop = true; // Loop the audio
