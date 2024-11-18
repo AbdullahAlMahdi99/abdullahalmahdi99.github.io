@@ -52,6 +52,26 @@
       height: 200px; /* Set a fixed height for the p element */
       overflow-y: auto; /* Enable vertical scrolling */
       margin-top: 20px;
+      position: relative;
+      padding-bottom: 30px; /* Add padding to make space for the fade effect */
+    }
+
+    /* Fixed shadowy fade effect at the bottom */
+    .fade-effect {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 30px; /* Height of the fade effect */
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+      pointer-events: none;
+      opacity: 1; /* Make it visible by default */
+      transition: opacity 0.3s ease-out; /* Smooth transition */
+    }
+
+    /* Apply to hide the fade effect while scrolling */
+    p.scrolling ~ .fade-effect {
+      opacity: 0; /* Hide fade effect while scrolling */
     }
 
     .heart {
@@ -135,7 +155,7 @@
 </head>
 <body>
   <h1>Happy Birthday, My Love! 🎉</h1>
-  <p>
+  <p id="scrollable-text">
     Wishing you a day filled with laughter, joy, and all the love in the world.  
     You light up my life in the most magical way, and today, it's all about celebrating YOU!  
     <span class="heart">❤️</span>
@@ -148,7 +168,7 @@
   </p>
 
   <!-- Play Music Button -->
-  <button class="play-button" onclick="playMusic()">🎶Click Me 🎶</button>
+  <button class="play-button" onclick="playMusic()">🎶 Play Music 🎶</button>
 
   <footer>
     With all my heart, Abdullah
@@ -168,11 +188,31 @@
     }
 
     // Play Music Script
-    let audio = new Audio('brithdaysong.mp3.mp3'); // Replace with your audio file
+    let audio = new Audio('your-audio-file.mp3'); // Replace with your audio file
     function playMusic() {
       audio.play();
       audio.loop = true; // Loop the audio
     }
+
+    // Scroll event listener to toggle the fade effect
+    const textElement = document.getElementById('scrollable-text');
+    let isScrolling;
+
+    textElement.addEventListener('scroll', function() {
+      // Add the scrolling class when scrolling starts
+      textElement.classList.add('scrolling');
+
+      // Clear any previous timeout and set a new one
+      window.clearTimeout(isScrolling);
+
+      // Set timeout to remove scrolling class after scrolling stops
+      isScrolling = setTimeout(function() {
+        textElement.classList.remove('scrolling');
+      }, 100); // Delay (100ms) to detect when scrolling has stopped
+    });
   </script>
+
+  <!-- Fixed Fade Effect -->
+  <div class="fade-effect"></div>
 </body>
 </html>
